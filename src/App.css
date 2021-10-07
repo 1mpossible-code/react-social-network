@@ -1,24 +1,43 @@
+* {
+    box-sizing: border-box;
+}
+
 .app-wrapper {
     font-size: 18px;
-    margin: 10px auto;
+    margin: 0 auto;
     width: 1200px;
     display: grid;
     grid-template-areas: "header header" "nav main";
     grid-template-rows: 60px 1fr;
     grid-template-columns: 2fr 10fr;
     grid-gap: 10px;
+    height: 100vh;
+    color: white;
 }
 
 .header {
     grid-area: header;
     background-color: mediumseagreen;
+    border: 1px solid green;
+    border-radius: 10px;
+}
+
+.header > .logo {
+    font-size: 20px;
+    float: left;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    padding-left: 1rem;
 }
 
 .navbar {
+    border: 1px solid green;
+    border-radius: 10px;
     grid-area: nav;
-    padding: 10px;
+    padding: 1rem;
     background-color: mediumseagreen;
-    color: white;
+    height: 100%;
 }
 
 .navbar > div:last-child {
@@ -26,5 +45,9 @@
 }
 
 .content {
+    border: 1px solid silver;
+    border-radius: 10px;
+    padding: 1rem;
     grid-area: main;
+    color: #000;
 }
