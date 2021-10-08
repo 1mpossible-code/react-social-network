@@ -1,11 +1,11 @@
 import React from "react";
-import MyPosts from "./MyPosts/MyPosts";
+import Post from "./Post/Post";
 
 const Profile = () => {
     return (
         <div>
-            Profile
-            <MyPosts/>
+            MyPosts
+            <Post/>
         </div>
     )
 }
