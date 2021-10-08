@@ -10,3 +10,12 @@
 .navbar > div:last-child {
     margin-top: 2rem;
 }
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+}
+
+.navbar a.active {
+    color: chartreuse;
+}
