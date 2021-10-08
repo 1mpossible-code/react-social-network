@@ -1,13 +1,14 @@
 import React from "react";
 import Post from "./Post/Post";
 
-const Profile = () => {
+const MyPosts = () => {
     return (
         <div>
-            MyPosts
-            <Post/>
+            <div>MyPosts</div>
+            <Post message='Hey!'/>
+            <Post message='It is my first post'/>
         </div>
     )
 }
 
-export default Profile;
+export default MyPosts;

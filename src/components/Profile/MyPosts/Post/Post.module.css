@@ -1,0 +1,17 @@
+.post {
+    float: left;
+    border: 1px solid silver;
+    width: 100%;
+    min-width: 300px;
+    margin-bottom: 1rem;
+}
+
+.avatar {
+    float: left;
+    width: 20%;
+}
+
+.content {
+    float: left;
+    width: 80%;
+}
