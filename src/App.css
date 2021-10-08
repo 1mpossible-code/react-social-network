@@ -15,35 +15,6 @@
     color: white;
 }
 
-.header {
-    grid-area: header;
-    background-color: mediumseagreen;
-    border: 1px solid green;
-    border-radius: 10px;
-}
-
-.header > .logo {
-    font-size: 20px;
-    float: left;
-    display: flex;
-    height: 100%;
-    align-items: center;
-    padding-left: 1rem;
-}
-
-.navbar {
-    border: 1px solid green;
-    border-radius: 10px;
-    grid-area: nav;
-    padding: 1rem;
-    background-color: mediumseagreen;
-    height: 100%;
-}
-
-.navbar > div:last-child {
-    margin-top: 2rem;
-}
-
 .content {
     border: 1px solid silver;
     border-radius: 10px;
