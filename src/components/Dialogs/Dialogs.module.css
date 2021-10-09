@@ -1,0 +1,39 @@
+.dialogFrame {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-gap: 1rem;
+    height: 100%;
+}
+
+.dialogFrame .dialogItems {
+    border-radius: 15px;
+    border: 1px solid silver;
+    padding: 1rem;
+}
+
+.dialogItems .item {
+    border-bottom: 1px solid silver;
+    padding: 10px 0;
+}
+
+.dialogItems .item.active {
+    color: seagreen;
+}
+
+.dialogFrame .chat {
+    border-radius: 15px;
+    border: 1px solid silver;
+    padding: 1rem;
+}
+
+.chat .message {
+    padding: 5px 0;
+}
+
+.chat .message.left {
+    text-align: left;
+}
+
+.chat .message.right {
+    text-align: right;
+}
