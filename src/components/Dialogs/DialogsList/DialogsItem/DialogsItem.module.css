@@ -1,0 +1,8 @@
+.dialogsItem {
+    border-bottom: 1px solid silver;
+    padding: 10px 0;
+}
+
+.dialogsItem.active {
+    color: seagreen;
+}

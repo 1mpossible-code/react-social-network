@@ -1,0 +1,11 @@
+.message {
+    padding: 5px 0;
+}
+
+.message.left {
+    text-align: left;
+}
+
+.message.right {
+    text-align: right;
+}
