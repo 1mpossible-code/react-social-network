@@ -2,10 +2,12 @@ import React from "react";
 import classes from "./DialogsList.module.css"
 import DialogsItem from "./DialogsItem/DialogsItem";
 
-const DialogsList = () => {
+const DialogsList = (props) => {
     return (
         <div className={classes.dialogItems}>
-            <DialogsItem name="Test"/>
+            {props.dialogs.map(
+                user => <DialogsItem name={user.name} id={user.id}/>
+            )}
         </div>
     )
 }

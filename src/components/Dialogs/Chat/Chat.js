@@ -2,10 +2,12 @@ import React from "react";
 import classes from "./Chat.css"
 import Message from "./Message/Message";
 
-const Chat = () => {
+const Chat = (props) => {
     return (
         <div className={classes.dialogsChat}>
-            <Message text="Hi!"/>
+            {props.messages.map(
+                message => <Message text={message.text} id={message.id}/>
+            )}
         </div>
     )
 }
