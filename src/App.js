@@ -12,8 +12,12 @@ function App(props) {
                 <Header/>
                 <Sidebar/>
                 <main className="content">
-                    <Route path="/profile" component={Profile}/>
-                    <Route path="/dialogs" render={() => <Dialogs state={props.state.dialogsPage}/>}/>
+                    <Route path="/profile" render={() => (
+                        <Profile state={props.state.profilePage} addPost={props.addPost}/>
+                    )}/>
+                    <Route path="/dialogs" render={() => (
+                        <Dialogs state={props.state.dialogsPage}/>
+                    )}/>
                 </main>
             </div>
         </BrowserRouter>

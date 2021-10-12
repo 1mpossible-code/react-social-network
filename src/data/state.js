@@ -14,7 +14,24 @@ const state = {
             {id: 4, name: 'name4'},
             {id: 5, name: 'name5'},
         ]
+    },
+    profilePage: {
+        posts: [
+            {id: 1, text: 'text post 1'},
+            {id: 2, text: 'text post 2'},
+        ]
     }
+}
+
+export const addPost = (text) => {
+    const postsLink = state.profilePage.posts;
+
+    const newPost = {
+        id: postsLink.length + 1,
+        text,
+    };
+
+    postsLink.push(newPost);
 }
 
 export default state;
