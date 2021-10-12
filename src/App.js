@@ -13,7 +13,7 @@ function App(props) {
                 <Sidebar/>
                 <main className="content">
                     <Route path="/profile" component={Profile}/>
-                    <Route path="/dialogs" render={() => <Dialogs data={props.data}/>}/>
+                    <Route path="/dialogs" render={() => <Dialogs state={props.state.dialogsPage}/>}/>
                 </main>
             </div>
         </BrowserRouter>

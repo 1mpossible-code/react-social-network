@@ -3,27 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
-const data = {
-    messages: [
-        {id: 1, text: 'text1'},
-        {id: 2, text: 'text2'},
-        {id: 3, text: 'text3'},
-        {id: 4, text: 'text4'},
-        {id: 5, text: 'text5'},
-    ],
-    dialogs: [
-        {id: 1, name: 'name1'},
-        {id: 2, name: 'name2'},
-        {id: 3, name: 'name3'},
-        {id: 4, name: 'name4'},
-        {id: 5, name: 'name5'},
-    ]
-};
+import state from "./data/state";
 
 ReactDOM.render(
     <React.StrictMode>
-        <App data={data}/>
+        <App state={state}/>
     </React.StrictMode>,
     document.getElementById('root')
 );
