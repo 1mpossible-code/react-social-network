@@ -6,16 +6,23 @@ const MyPosts = (props) => {
 
     const createNewPost = (event) => {
         event.preventDefault();
+        props.addPost();
+    };
 
+    const changeNewPostText = () => {
         const text = textareaRef.current.value;
-        props.addPost(text);
+        props.updateNewPostText(text);
     };
 
     return (
         <div>
             <div>MyPosts</div>
             <form>
-                <textarea ref={textareaRef}/>
+                <textarea
+                    ref={textareaRef}
+                    onChange={changeNewPostText}
+                    value={props.newPostText}
+                />
                 <button onClick={createNewPost}>Submit!</button>
             </form>
             {props.posts.map(post => <Post message={post.text} id={post.id}/>)}
