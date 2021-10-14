@@ -6,12 +6,13 @@ const MyPosts = (props) => {
 
     const createNewPost = (event) => {
         event.preventDefault();
-        props.addPost();
+        props.dispatch({type: 'ADD-POST'});
     };
 
     const changeNewPostText = () => {
-        const text = textareaRef.current.value;
-        props.updateNewPostText(text);
+        const newPostText = textareaRef.current.value;
+        const action = {type: 'UPDATE-NEW-POST-TEXT', newPostText};
+        props.dispatch(action);
     };
 
     return (

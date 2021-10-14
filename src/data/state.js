@@ -23,34 +23,37 @@ const store = {
             newPostText: '',
         }
     },
+
     getState() {
         return this._state;
     },
     _callSubscriber() {
     },
-    addPost() {
-        const postsLink = this._state.profilePage.posts;
-        const newPostTextLink = this._state.profilePage.newPostText;
 
-        const newPost = {
-            id: postsLink.length + 1,
-            text: newPostTextLink,
-        };
-
-        postsLink.push(newPost);
-
-        this._state.profilePage.newPostText = '';
-
-        this._callSubscriber(this._state, this.addPost);
-    },
-    updateNewPostText(newPostText) {
-        this._state.profilePage.newPostText = newPostText;
-
-        this._callSubscriber(this._state);
-    },
     subscribe(observer) {
         this._callSubscriber = observer;
-    }
+    },
+
+    dispatch(action) {
+        switch (action.type) {
+            case 'ADD-POST':
+                const newPost = {
+                    id: this._state.profilePage.posts.length + 1,
+                    text: this._state.profilePage.newPostText,
+                };
+
+                this._state.profilePage.posts.push(newPost);
+                this._state.profilePage.newPostText = '';
+                this._callSubscriber();
+                break;
+            case 'UPDATE-NEW-POST-TEXT':
+                this._state.profilePage.newPostText = action.newPostText;
+                this._callSubscriber();
+                break;
+            default:
+                throw Error('Action type is invalid!');
+        }
+    },
 }
 
 export default store;
