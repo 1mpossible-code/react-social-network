@@ -1,5 +1,8 @@
 const ADD_POST = 'ADD_POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
+
+const ADD_MESSAGE = 'ADD_MESSAGE';
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT';
 
 const store = {
     _state: {
@@ -17,7 +20,8 @@ const store = {
                 {id: 3, name: 'name3'},
                 {id: 4, name: 'name4'},
                 {id: 5, name: 'name5'},
-            ]
+            ],
+            newMessageText: '',
         },
         profilePage: {
             posts: [
@@ -53,6 +57,20 @@ const store = {
                 this._state.profilePage.newPostText = action.newPostText;
                 this._callSubscriber();
                 break;
+            case ADD_MESSAGE:
+                const newMessage = {
+                    id: this._state.dialogsPage.messages.length + 1,
+                    text: this._state.dialogsPage.newMessageText,
+                };
+
+                this._state.dialogsPage.messages.push(newMessage);
+                this._state.dialogsPage.newMessageText = '';
+                this._callSubscriber();
+                break;
+            case UPDATE_NEW_MESSAGE_TEXT:
+                this._state.dialogsPage.newMessageText = action.newMessageText;
+                this._callSubscriber();
+                break;
             default:
                 throw Error('Action type is invalid!');
         }
@@ -61,11 +79,20 @@ const store = {
 
 export const addPostActionCreator = () => ({
     type: ADD_POST,
-})
+});
 
 export const updateNewPostTextActionCreator = (newPostText) => ({
     type: UPDATE_NEW_POST_TEXT,
     newPostText,
-})
+});
+
+export const addMessageActionCreator = () => ({
+    type: ADD_MESSAGE,
+});
+
+export const updateNewMessageTextActionCreator = (newMessageText) => ({
+    type: UPDATE_NEW_MESSAGE_TEXT,
+    newMessageText,
+});
 
 export default store;
