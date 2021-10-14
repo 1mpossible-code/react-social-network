@@ -1,17 +1,19 @@
 import React from "react";
 import Post from "./Post/Post";
+import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../data/state";
 
 const MyPosts = (props) => {
     const textareaRef = React.createRef();
 
     const createNewPost = (event) => {
         event.preventDefault();
-        props.dispatch({type: 'ADD-POST'});
+        const action = addPostActionCreator();
+        props.dispatch(action);
     };
 
     const changeNewPostText = () => {
-        const newPostText = textareaRef.current.value;
-        const action = {type: 'UPDATE-NEW-POST-TEXT', newPostText};
+        const text = textareaRef.current.value;
+        const action = updateNewPostTextActionCreator(text);
         props.dispatch(action);
     };
 
