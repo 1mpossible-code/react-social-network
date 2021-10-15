@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./Chat.css"
 import Message from "./Message/Message";
-import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../../data/state";
+import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../../data/dialogsReducer";
 
 const Chat = (props) => {
     const onButtonCLick = (event) => {

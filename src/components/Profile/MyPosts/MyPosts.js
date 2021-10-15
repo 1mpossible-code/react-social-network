@@ -1,6 +1,6 @@
 import React from "react";
 import Post from "./Post/Post";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../data/state";
+import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../data/profileReducer";
 
 const MyPosts = (props) => {
     const textareaRef = React.createRef();

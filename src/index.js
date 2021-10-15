@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import store from "./data/state";
+import store from "./data/store";
 
 export const renderEntireTree = () => {
     ReactDOM.render(
