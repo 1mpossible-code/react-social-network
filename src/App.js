@@ -13,14 +13,10 @@ function App(props) {
                 <Sidebar/>
                 <main className="content">
                     <Route path="/profile" render={() => (
-                        <Profile
-                            store={props.store}
-                        />
+                        <Profile/>
                     )}/>
                     <Route path="/dialogs" render={() => (
-                        <Dialogs
-                            store={props.store}
-                        />
+                        <Dialogs/>
                     )}/>
                 </main>
             </div>
