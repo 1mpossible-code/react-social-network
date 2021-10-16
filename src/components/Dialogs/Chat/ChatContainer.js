@@ -1,35 +1,21 @@
-import React from "react";
 import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../../redux/dialogsReducer";
 import Chat from "./Chat";
-import StoreContext from "../../../StoreContext";
+import {connect} from "react-redux";
 
-const ChatContainer = () => {
-    return (
-        <StoreContext.Consumer>
-            {store => {
-                const state = store.getState().dialogsPage;
+const mapStateToProps = (state) => ({
+    messages: state.dialogsPage.messages,
+    newMessageText: state.dialogsPage.newMessageText,
+})
 
-                const sendNewMessage = (event) => {
-                    event.preventDefault();
-                    const action = addMessageActionCreator();
-                    store.dispatch(action)
-                }
+const mapDispatchToProps = (dispatch) => ({
+    onTextareaChange: (text) => {
+        dispatch(updateNewMessageTextActionCreator(text))
+    },
+    onBtnClick: () => {
+        dispatch(addMessageActionCreator())
+    },
+})
 
-                const changeNewMessageText = (event) => {
-                    const text = event.target.value
-                    const action = updateNewMessageTextActionCreator(text);
-                    store.dispatch(action);
-                }
-
-                return <Chat
-                    onTextareaChange={changeNewMessageText}
-                    onBtnClick={sendNewMessage}
-                    newMessageText={state.newMessageText}
-                    messages={state.messages}
-                />
-            }}
-        </StoreContext.Consumer>
-    )
-}
+const ChatContainer = connect(mapStateToProps, mapDispatchToProps)(Chat);
 
 export default ChatContainer;

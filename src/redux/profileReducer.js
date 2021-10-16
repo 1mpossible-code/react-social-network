@@ -9,6 +9,7 @@ const initialState = {
 }
 
 const profileReducer = (state = initialState, action) => {
+    const stateCopy = Object.create(state)
     switch (action.type) {
         case ADD_POST:
             const newPost = {
@@ -16,17 +17,17 @@ const profileReducer = (state = initialState, action) => {
                 text: state.newPostText,
             };
 
-            state.posts.push(newPost);
-            state.newPostText = '';
+            stateCopy.posts.push(newPost);
+            stateCopy.newPostText = '';
             break;
         case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newPostText;
+            stateCopy.newPostText = action.newPostText;
             break;
         default:
             break;
     }
 
-    return state;
+    return stateCopy;
 }
 
 export const updateNewPostTextActionCreator = (newPostText) => ({

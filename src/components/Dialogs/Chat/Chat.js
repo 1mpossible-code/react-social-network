@@ -3,14 +3,24 @@ import classes from "./Chat.css"
 import Message from "./Message/Message";
 
 const Chat = (props) => {
+    const onTextareaChange = (event) => {
+        const text = event.target.value;
+        props.onTextareaChange(text);
+    }
+
+    const onBtnClick = (event) => {
+        event.preventDefault()
+        props.onBtnClick();
+    }
+
     return (
         <div className={classes.dialogsChat}>
             <form>
                 <textarea
-                    onChange={props.onTextareaChange}
+                    onChange={onTextareaChange}
                     value={props.newMessageText}
                 />
-                <button onClick={props.onBtnClick}>Submit!</button>
+                <button onClick={onBtnClick}>Submit!</button>
             </form>
             {props.messages.map(
                 message => <Message text={message.text} id={message.id}/>
