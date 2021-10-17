@@ -22,7 +22,7 @@ const MyPosts = (props) => {
                 />
                 <button onClick={onBtnClick}>Submit!</button>
             </form>
-            {props.posts.map(post => <Post message={post.text} id={post.id}/>)}
+            {props.posts.map(post => <Post message={post.text} key={post.id}/>)}
         </div>
     )
 }
