@@ -1,0 +1,38 @@
+.userContainer {
+    border: 1px solid silver;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    float: left;
+    width: 100%;
+}
+
+.userDescription {
+    font-size: 14px;
+    color: darkgray;
+}
+
+.container {
+    width: 50%;
+    float: left;
+}
+
+.followBtn {
+    width: 10rem;
+    height: 3rem;
+    font-size: 1.3rem;
+    display: block;
+    border: 1px solid silver;
+    border-radius: 15px;
+    background-color: darkcyan;
+    transition: 0.3s;
+    text-decoration: none;
+    color: #dddddd;
+    float: right;
+}
+.followBtn:hover {
+    filter: brightness(110%);
+    transform: scale(1.1);
+}
