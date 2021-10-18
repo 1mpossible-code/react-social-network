@@ -1,7 +1,17 @@
 import React from "react";
 import classes from './Users.module.css';
+import axios from "axios";
 
 const Users = (props) => {
+    if (props.users.length === 0) {
+        axios.get('https://jsonplaceholder.typicode.com/users').then(
+            res => {
+                props.setUsers(res.data);
+                console.log(res.data)
+            }
+        )
+    }
+
     return (
         <div>
             <h1>Users</h1>
@@ -17,7 +27,7 @@ const Users = (props) => {
                             onClick={() => {
                                 props.onFollowBtnClick(user.id)
                             }}
-                        >{user.follows ? 'Follow' : 'Unfollow'}</button>
+                        >{user.follows ? 'Unfollow' : 'Follow'}</button>
                     </div>
                 ))
             }

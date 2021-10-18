@@ -1,4 +1,4 @@
-import {toggleFollowActionCreator} from "../../redux/usersReducer";
+import {setUsersActionCreator, toggleFollowActionCreator} from "../../redux/usersReducer";
 import {connect} from "react-redux";
 import Users from "./Users";
 
@@ -8,7 +8,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     onFollowBtnClick: (userId) => {
-        dispatch(toggleFollowActionCreator(userId))
+        dispatch(toggleFollowActionCreator(userId));
+    },
+    setUsers: (users) => {
+        dispatch(setUsersActionCreator(users));
     }
 })
 
