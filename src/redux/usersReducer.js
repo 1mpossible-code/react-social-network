@@ -1,13 +1,10 @@
 const TOGGLE_FOLLOW = 'TOGGLE_FOLLOW';
-const SET_USERS = 'SET_USERS';
+const ADD_USERS = 'ADD_USERS';
+const INCREMENT_CURRENT_PAGE = 'INCREMENT_CURRENT_PAGE';
 
 const initialState = {
-    users: [
-        // {id: 1, follows: true, name: 'Lorem Ipsum 1', description: 'test description'},
-        // {id: 2, follows: false, name: 'Lorem Ipsum 2', description: 'test description'},
-        // {id: 3, follows: false, name: 'Lorem Ipsum 3', description: 'test description'},
-        // {id: 4, follows: true, name: 'Lorem Ipsum 4', description: 'test description'},
-    ]
+    users: [],
+    currentPage: 1,
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -20,10 +17,15 @@ const usersReducer = (state = initialState, action) => {
                     return user;
                 })]
             };
-        case SET_USERS:
+        case ADD_USERS:
             return {
                 ...state,
-                users: action.users
+                users: [...state.users, ...action.users],
+            }
+        case INCREMENT_CURRENT_PAGE:
+            return {
+                ...state,
+                currentPage: state.currentPage + 1,
             }
         default:
             return state;
@@ -35,9 +37,13 @@ export const toggleFollowActionCreator = (userId) => ({
     userId
 })
 
-export const setUsersActionCreator = (users) => ({
-    type: SET_USERS,
+export const addUsersActionCreator = (users) => ({
+    type: ADD_USERS,
     users
+})
+
+export const incrementCurrentPageActionCreator = () => ({
+    type: INCREMENT_CURRENT_PAGE,
 })
 
 export default usersReducer;

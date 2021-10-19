@@ -28,11 +28,33 @@
     border-radius: 15px;
     background-color: darkcyan;
     transition: 0.3s;
-    text-decoration: none;
     color: #dddddd;
     float: right;
 }
 .followBtn:hover {
     filter: brightness(110%);
     transform: scale(1.1);
+}
+
+.loadBtn {
+    width: 13rem;
+    height: 3rem;
+    font-size: 1.3rem;
+    display: block;
+    border: 1px solid silver;
+    border-radius: 15px;
+    background-color: darkcyan;
+    transition: 0.3s;
+    color: #dddddd;
+}
+
+.loadBtn:hover {
+    filter: brightness(110%);
+    transform: scale(1.1);
+}
+
+.loadBtnContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
