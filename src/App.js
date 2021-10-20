@@ -13,7 +13,7 @@ function App(props) {
                 <Header/>
                 <Sidebar/>
                 <main className="content">
-                    <Route path="/profile" render={() => (
+                    <Route path="/profile/:userId" render={() => (
                         <ProfileContainer/>
                     )}/>
                     <Route path="/dialogs" render={() => (

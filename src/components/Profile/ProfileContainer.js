@@ -4,10 +4,13 @@ import {connect} from "react-redux";
 import axios from "axios";
 import {setProfile} from "../../redux/profileReducer";
 import Preloader from "../Utils/Preloader";
+import {withRouter} from "react-router-dom";
 
 class ProfileContainer extends Component {
     componentDidMount() {
-        axios.get('https://jsonplaceholder.typicode.com/users/1').then(
+        console.log(this.props)
+        const {userId} = this.props.match.params;
+        axios.get(`https://jsonplaceholder.typicode.com/users/${userId}`).then(
             res => {
                 this.props.setProfile(res.data);
             }
@@ -16,7 +19,7 @@ class ProfileContainer extends Component {
 
     render() {
         if (!this.props.profile) {
-            return <Preloader />
+            return <Preloader/>
         }
         return (
             <Profile profile={this.props.profile}/>
@@ -28,4 +31,4 @@ const mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
 })
 
-export default connect(mapStateToProps, {setProfile})(ProfileContainer);
+export default connect(mapStateToProps, {setProfile})(withRouter(ProfileContainer));
