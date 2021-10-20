@@ -1,5 +1,6 @@
 import React from "react";
 import classes from './Users.module.css';
+import loading from '../../assets/loading.gif';
 
 const Users = (props) => {
     return <div>
@@ -30,11 +31,12 @@ const Users = (props) => {
         }
 
         {
-            ((props.currentPage * props.LIMIT) === props.users.length + props.LIMIT) &&
-            <div className={classes.loadBtnContainer}>
-                <span>that's all</span>
+            props.isLoading &&
+            <div className={classes.loading}>
+                <img src={loading} alt='loading'/>
             </div>
         }
+
 
     </div>
 }

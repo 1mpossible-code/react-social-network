@@ -1,7 +1,7 @@
 import {
     incrementCurrentPageActionCreator,
     addUsersActionCreator,
-    toggleFollowActionCreator
+    toggleFollowActionCreator, setIsLoadingActionCreator
 } from "../../redux/usersReducer";
 import {connect} from "react-redux";
 import Users from "./Users";
@@ -16,8 +16,10 @@ class UsersContainer extends Component {
     }
 
     getUsersPage(page) {
+        this.props.setIsLoading(true);
         axios.get(`https://jsonplaceholder.typicode.com/users?_page=${page}&_limit=${this.LIMIT}`).then(
             res => {
+                this.props.setIsLoading(false);
                 this.props.addUsers(res.data);
             }
         )
@@ -34,8 +36,11 @@ class UsersContainer extends Component {
                 users={this.props.users}
                 onFollowBtnClick={this.props.onFollowBtnClick}
                 currentPage={this.props.currentPage}
-                loadMoreUsers={() => {this.loadMoreUsers()}}
+                loadMoreUsers={() => {
+                    this.loadMoreUsers()
+                }}
                 LIMIT={this.LIMIT}
+                isLoading={this.props.isLoading}
             />
         );
     }
@@ -44,6 +49,7 @@ class UsersContainer extends Component {
 const mapStateToProps = (state) => ({
     users: state.usersPage.users,
     currentPage: state.usersPage.currentPage,
+    isLoading: state.usersPage.isLoading,
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -55,7 +61,10 @@ const mapDispatchToProps = (dispatch) => ({
     },
     incrementCurrentPage: () => {
         dispatch(incrementCurrentPageActionCreator())
-    }
+    },
+    setIsLoading: (isLoading) => {
+        dispatch(setIsLoadingActionCreator(isLoading))
+    },
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
