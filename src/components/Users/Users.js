@@ -1,6 +1,7 @@
 import React from "react";
 import classes from './Users.module.css';
-import loading from '../../assets/loading.gif';
+import Preloader from "../Utils/Preloader";
+import {NavLink} from "react-router-dom";
 
 const Users = (props) => {
     return <div>
@@ -8,10 +9,12 @@ const Users = (props) => {
         {
             props.users.map(user => (
                 <div key={user.id} className={classes.userContainer}>
-                    <div className={classes.container}>
-                        <div>{user.name}</div>
-                        <div className={classes.userDescription}>{user.description}</div>
-                    </div>
+                    <NavLink to={`profile/${user.id}`}>
+                        <div className={classes.container}>
+                            <div>{user.name}</div>
+                            <div className={classes.userDescription}>{user.company.catchPhrase}</div>
+                        </div>
+                    </NavLink>
                     <button
                         className={classes.followBtn}
                         onClick={() => {
@@ -31,10 +34,7 @@ const Users = (props) => {
         }
 
         {
-            props.isLoading &&
-            <div className={classes.loading}>
-                <img src={loading} alt='loading'/>
-            </div>
+            props.isLoading && <Preloader/>
         }
 
 
