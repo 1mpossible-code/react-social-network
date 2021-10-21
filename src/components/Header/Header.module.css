@@ -13,3 +13,11 @@
     align-items: center;
     padding-left: 1rem;
 }
+
+.login {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    float: right;
+    padding-right: 1rem;
+}
