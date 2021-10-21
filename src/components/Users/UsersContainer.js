@@ -6,7 +6,7 @@ import {
 import {connect} from "react-redux";
 import Users from "./Users";
 import {Component} from "react";
-import axios from "axios";
+import {getUsers} from "../../api/api";
 
 class UsersContainer extends Component {
     LIMIT = 4;
@@ -17,10 +17,10 @@ class UsersContainer extends Component {
 
     getUsersPage(page) {
         this.props.setIsLoading(true);
-        axios.get(`https://jsonplaceholder.typicode.com/users?_page=${page}&_limit=${this.LIMIT}`).then(
-            res => {
+        getUsers(page, this.LIMIT).then(
+            data => {
                 this.props.setIsLoading(false);
-                this.props.addUsers(res.data);
+                this.props.addUsers(data);
             }
         )
     }

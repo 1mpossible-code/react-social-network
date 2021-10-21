@@ -2,18 +2,15 @@ import React, {Component} from "react";
 import Header from "./Header";
 import {connect} from "react-redux";
 import {setAuthUser} from "../../redux/authReducer";
-import axios from "axios";
+import {getAuthMe} from "../../api/api";
 
 class HeaderContainer extends Component {
     componentDidMount() {
-        axios.get('http://localhost:3001/auth/me', {withCredentials: true})
-            .then(
-                res => {
-                    const {_id, name, email} = res.data
-
-                    this.props.setAuthUser(_id, name, email);
-                }
-            ).catch(e => console.log(e));
+        getAuthMe().then(
+            ({_id, name, email}) => {
+                this.props.setAuthUser(_id, name, email);
+            }
+        ).catch(e => console.error(e));
     }
 
     render() {
