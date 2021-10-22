@@ -1,3 +1,5 @@
+import userAPI from "../api/api";
+
 const TOGGLE_FOLLOW = 'TOGGLE_FOLLOW';
 const ADD_USERS = 'ADD_USERS';
 const INCREMENT_CURRENT_PAGE = 'INCREMENT_CURRENT_PAGE';
@@ -57,5 +59,15 @@ export const setIsLoadingActionCreator = (isLoading) => ({
     type: SET_IS_LOADING,
     isLoading,
 })
+
+export const getUsersThunk = (page, limit) => (dispatch) => {
+    dispatch(setIsLoadingActionCreator(true));
+    userAPI.getUsers(page, limit).then(
+        data => {
+            dispatch(addUsersActionCreator(data));
+            dispatch(setIsLoadingActionCreator(false));
+        }
+    );
+}
 
 export default usersReducer;

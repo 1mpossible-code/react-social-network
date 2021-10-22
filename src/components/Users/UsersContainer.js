@@ -1,33 +1,20 @@
 import {
-    incrementCurrentPageActionCreator,
-    addUsersActionCreator,
-    toggleFollowActionCreator, setIsLoadingActionCreator
+    getUsersThunk, incrementCurrentPageActionCreator, toggleFollowActionCreator
 } from "../../redux/usersReducer";
 import {connect} from "react-redux";
 import Users from "./Users";
 import {Component} from "react";
-import {getUsers} from "../../api/api";
 
 class UsersContainer extends Component {
     LIMIT = 4;
 
     componentDidMount() {
-        this.getUsersPage(1)
-    }
-
-    getUsersPage(page) {
-        this.props.setIsLoading(true);
-        getUsers(page, this.LIMIT).then(
-            data => {
-                this.props.setIsLoading(false);
-                this.props.addUsers(data);
-            }
-        )
+        this.props.getUsers(this.props.currentPage)
     }
 
     loadMoreUsers() {
         this.props.incrementCurrentPage();
-        this.getUsersPage(this.props.currentPage + 1);
+        this.props.getUsers(this.props.currentPage + 1)
     }
 
     render() {
@@ -52,19 +39,9 @@ const mapStateToProps = (state) => ({
     isLoading: state.usersPage.isLoading,
 })
 
-const mapDispatchToProps = (dispatch) => ({
-    onFollowBtnClick: (userId) => {
-        dispatch(toggleFollowActionCreator(userId));
-    },
-    addUsers: (users) => {
-        dispatch(addUsersActionCreator(users));
-    },
-    incrementCurrentPage: () => {
-        dispatch(incrementCurrentPageActionCreator())
-    },
-    setIsLoading: (isLoading) => {
-        dispatch(setIsLoadingActionCreator(isLoading))
-    },
-})
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default connect(mapStateToProps, {
+    getUsers: getUsersThunk,
+    incrementCurrentPage: incrementCurrentPageActionCreator,
+    onFollowBtnClick: toggleFollowActionCreator,
+})(UsersContainer);
