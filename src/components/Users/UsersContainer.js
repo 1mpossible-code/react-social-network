@@ -4,6 +4,7 @@ import {
 import {connect} from "react-redux";
 import Users from "./Users";
 import {Component} from "react";
+import {Redirect} from "react-router-dom";
 
 class UsersContainer extends Component {
     LIMIT = 4;
@@ -18,6 +19,8 @@ class UsersContainer extends Component {
     }
 
     render() {
+        if (!this.props.isAuthorized) return <Redirect to="/login"/>
+
         return (
             <Users
                 users={this.props.users}
@@ -37,6 +40,7 @@ const mapStateToProps = (state) => ({
     users: state.usersPage.users,
     currentPage: state.usersPage.currentPage,
     isLoading: state.usersPage.isLoading,
+    isAuthorized: state.auth.isAuthorized,
 })
 
 
