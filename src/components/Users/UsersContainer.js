@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import Users from "./Users";
 import {Component} from "react";
 import {Redirect} from "react-router-dom";
+import withAuthRedirect from "../../hoc/withAuthRedirect";
 
 class UsersContainer extends Component {
     LIMIT = 4;
@@ -19,7 +20,6 @@ class UsersContainer extends Component {
     }
 
     render() {
-        if (!this.props.isAuthorized) return <Redirect to="/login"/>
 
         return (
             <Users
@@ -48,4 +48,4 @@ export default connect(mapStateToProps, {
     getUsers: getUsersThunk,
     incrementCurrentPage: incrementCurrentPageActionCreator,
     onFollowBtnClick: toggleFollowActionCreator,
-})(UsersContainer);
+})(withAuthRedirect(UsersContainer));
