@@ -6,6 +6,7 @@ import Users from "./Users";
 import {Component} from "react";
 import {Redirect} from "react-router-dom";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 class UsersContainer extends Component {
     LIMIT = 4;
@@ -44,8 +45,11 @@ const mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps, {
-    getUsers: getUsersThunk,
-    incrementCurrentPage: incrementCurrentPageActionCreator,
-    onFollowBtnClick: toggleFollowActionCreator,
-})(withAuthRedirect(UsersContainer));
+export default compose(
+    connect(mapStateToProps, {
+        getUsers: getUsersThunk,
+        incrementCurrentPage: incrementCurrentPageActionCreator,
+        onFollowBtnClick: toggleFollowActionCreator,
+    }),
+    withAuthRedirect,
+)(UsersContainer);
