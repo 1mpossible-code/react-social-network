@@ -4,7 +4,6 @@ import {
 import {connect} from "react-redux";
 import Users from "./Users";
 import {Component} from "react";
-import {Redirect} from "react-router-dom";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
@@ -21,17 +20,13 @@ class UsersContainer extends Component {
     }
 
     render() {
-
         return (
             <Users
-                users={this.props.users}
-                onFollowBtnClick={this.props.onFollowBtnClick}
-                currentPage={this.props.currentPage}
+                {...this.props}
                 loadMoreUsers={() => {
                     this.loadMoreUsers()
                 }}
                 LIMIT={this.LIMIT}
-                isLoading={this.props.isLoading}
             />
         );
     }
@@ -41,7 +36,6 @@ const mapStateToProps = (state) => ({
     users: state.usersPage.users,
     currentPage: state.usersPage.currentPage,
     isLoading: state.usersPage.isLoading,
-    isAuthorized: state.auth.isAuthorized,
 })
 
 
