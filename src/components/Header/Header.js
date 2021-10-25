@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./Header.module.css";
+import {NavLink} from "react-router-dom";
 
 const Header = (props) => {
     return (
@@ -10,7 +11,7 @@ const Header = (props) => {
             <div className={classes.login}>
                 {
                     props.isAuthorized ? props.name :
-                        <a href="http://localhost:3001/login">Login</a>
+                        <NavLink to="/login">Login</NavLink>
                 }
             </div>
         </header>
