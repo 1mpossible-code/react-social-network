@@ -6,17 +6,16 @@ import Users from "./Users";
 import {Component} from "react";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
+import {getCurrentPage, getIsEnd, getIsLoading, getLimit, getUsers} from "../../redux/selectors/userSlectors";
 
 class UsersContainer extends Component {
-    LIMIT = 4;
-
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage)
+        this.props.getUsers(this.props.currentPage, this.props.limit);
     }
 
     loadMoreUsers() {
         this.props.incrementCurrentPage();
-        this.props.getUsers(this.props.currentPage + 1)
+        this.props.getUsers(this.props.currentPage + 1, this.props.limit);
     }
 
     render() {
@@ -26,16 +25,17 @@ class UsersContainer extends Component {
                 loadMoreUsers={() => {
                     this.loadMoreUsers()
                 }}
-                LIMIT={this.LIMIT}
             />
         );
     }
 }
 
 const mapStateToProps = (state) => ({
-    users: state.usersPage.users,
-    currentPage: state.usersPage.currentPage,
-    isLoading: state.usersPage.isLoading,
+    users: getUsers(state),
+    currentPage: getCurrentPage(state),
+    limit: getLimit(state),
+    isLoading: getIsLoading(state),
+    isEnd: getIsEnd(state),
 })
 
 

@@ -26,7 +26,7 @@ const Users = (props) => {
         }
 
         {
-            ((props.currentPage * props.LIMIT) <= props.users.length) &&
+            (props.isEnd) &&
             <div className={classes.loadBtnContainer}>
                 <button className={classes.loadBtn} onClick={props.loadMoreUsers}>Load More
                 </button>

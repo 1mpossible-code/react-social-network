@@ -32,7 +32,7 @@ export const getAuthUserThunk = () => (dispatch) => {
     return userAPI.getAuthMe().then(
         ({_id, name, email}) => {
             dispatch(setAuthUser(_id, name, email));
-        })
+        }).catch(e => console.error(e))
 }
 
 export default authReducer;

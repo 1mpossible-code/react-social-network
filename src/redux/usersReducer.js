@@ -8,6 +8,7 @@ const SET_IS_LOADING = 'SET_IS_LOADING'
 const initialState = {
     users: [],
     currentPage: 1,
+    limit: 4,
     isLoading: false,
 }
 
