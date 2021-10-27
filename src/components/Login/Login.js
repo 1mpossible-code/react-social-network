@@ -1,6 +1,10 @@
 import React from 'react';
+import {getIsAuthorized} from "../../redux/selectors/authSelector";
+import {Redirect} from "react-router-dom";
+import {connect} from "react-redux";
 
-function Login() {
+function Login(props) {
+    if (props.isAuthorized) return <Redirect to="/profile"/>
     return (
         <div>
             <h1>Login</h1>
@@ -19,4 +23,8 @@ function Login() {
     );
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+    isAuthorized: getIsAuthorized(state),
+})
+
+export default connect(mapStateToProps)(Login);
