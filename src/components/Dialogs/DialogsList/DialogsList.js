@@ -6,7 +6,7 @@ const DialogsList = (props) => {
     return (
         <div className={classes.dialogItems}>
             {props.dialogs.map(
-                user => <DialogsItem name={user.name} id={user.id}/>
+                user => <DialogsItem key={user.id} name={user.name} id={user.id}/>
             )}
         </div>
     )

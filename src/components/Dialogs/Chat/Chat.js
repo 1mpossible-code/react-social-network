@@ -23,7 +23,7 @@ const Chat = (props) => {
                 <button onClick={onBtnClick}>Submit!</button>
             </form>
             {props.messages.map(
-                message => <Message text={message.text} id={message.id}/>
+                message => <Message key={message.id} text={message.text} id={message.id}/>
             )}
         </div>
     )
