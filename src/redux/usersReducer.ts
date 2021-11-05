@@ -45,6 +45,12 @@ const usersReducer = (state = initialState, action: any): InitialStateType => {
     }
 }
 
+type ActionTypes =
+    ToggleFollowActionType
+    | AddUsersActionType
+    | IncrementCurrentPageActionType
+    | SetIsLoadingActionType;
+
 type ToggleFollowActionType = {
     type: typeof TOGGLE_FOLLOW;
     userId: number;

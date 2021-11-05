@@ -17,7 +17,7 @@ const initialState = {
 
 type InitialStateType = typeof initialState;
 
-const profileReducer = (state = initialState, action: any): InitialStateType => {
+const profileReducer = (state = initialState, action: ActionTypes): InitialStateType => {
     switch (action.type) {
         case ADD_POST:
             const newPost = {
@@ -44,6 +44,8 @@ const profileReducer = (state = initialState, action: any): InitialStateType => 
             return state;
     }
 }
+
+type ActionTypes = AddPostActionType | UpdateNewPostTextActionType | SetProfileActionType;
 
 type UpdateNewPostTextActionType = {
     type: typeof UPDATE_NEW_POST_TEXT;
