@@ -1,4 +1,6 @@
 import {getAuthUserThunk} from "./authReducer";
+import {ThunkAction} from "redux-thunk";
+import {RootState} from "./store";
 
 const INITIALIZE = 'INITIALIZE';
 
@@ -30,7 +32,7 @@ const initializationSuccess = (): InitializationSuccessActionType => ({
     type: INITIALIZE,
 })
 
-export const initialize = () => (dispatch: any) => {
+export const initialize = (): ThunkAction<void, RootState, unknown, ActionTypes> => (dispatch) => {
     const promise = dispatch(getAuthUserThunk());
     promise.then(() => dispatch(initializationSuccess()))
 }

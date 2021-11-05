@@ -1,5 +1,7 @@
 import userAPI from "../api/api";
 import {UserType} from "../types/types";
+import {ThunkAction} from "redux-thunk";
+import {RootState} from "./store";
 
 const TOGGLE_FOLLOW = 'TOGGLE_FOLLOW';
 const ADD_USERS = 'ADD_USERS';
@@ -15,7 +17,7 @@ const initialState = {
 
 type InitialStateType = typeof initialState;
 
-const usersReducer = (state = initialState, action: any): InitialStateType => {
+const usersReducer = (state = initialState, action: ActionTypes): InitialStateType => {
     switch (action.type) {
         case TOGGLE_FOLLOW:
             return {
@@ -89,7 +91,7 @@ export const setIsLoadingActionCreator = (isLoading: boolean): SetIsLoadingActio
     isLoading,
 })
 
-export const getUsersThunk = (page: number, limit: number) => async (dispatch: any) => {
+export const getUsersThunk = (page: number, limit: number): ThunkAction<Promise<void>, RootState, unknown, ActionTypes> => async (dispatch) => {
     dispatch(setIsLoadingActionCreator(true));
     const users: any = await userAPI.getUsers(page, limit);
     dispatch(addUsersActionCreator(users));

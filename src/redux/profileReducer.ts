@@ -1,5 +1,7 @@
 import userAPI from "../api/api";
 import {UserType} from "../types/types";
+import {ThunkAction} from "redux-thunk";
+import {RootState} from "./store";
 
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
@@ -75,7 +77,7 @@ export const setProfile = (profile: UserType): SetProfileActionType => ({
     profile
 })
 
-export const getUserThunk = (userId: string) => async (dispatch: any) => {
+export const getUserThunk = (userId: string): ThunkAction<Promise<void>, RootState, unknown, ActionTypes>  => async (dispatch) => {
     const profile: any = await userAPI.getUserById(userId);
     dispatch(setProfile(profile));
 };

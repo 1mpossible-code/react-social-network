@@ -1,4 +1,6 @@
 import userAPI from "../api/api";
+import {ThunkAction} from "redux-thunk";
+import {RootState} from "./store";
 
 const SET_AUTH_USER = 'SET_AUTH_USER';
 
@@ -43,7 +45,7 @@ export const setAuthUser = (userId: string | null, name: string | null, email: s
     data: {userId, name, email},
 })
 
-export const getAuthUserThunk = () => async (dispatch: any) => {
+export const getAuthUserThunk = (): ThunkAction<Promise<void>, RootState, unknown, ActionTypes> => async (dispatch) => {
     const {_id, name, email}: any = await userAPI.getAuthMe();
     dispatch(setAuthUser(_id, name, email));
 }
