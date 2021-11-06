@@ -7,13 +7,24 @@ import {Component} from "react";
 import {initialize} from "./redux/appReducer";
 import {connect} from "react-redux";
 import Preloader from "./components/Utils/Preloader";
+import {RootState} from "./redux/store";
 
 const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"))
 const Dialogs = React.lazy(() => import("./components/Dialogs/Dialogs"))
 const UsersContainer = React.lazy(() => import("./components/Users/UsersContainer"))
 const Login = React.lazy(() => import("./components/Login/Login"))
 
-class App extends Component {
+type MapStatePropsType = {
+    initialized: boolean;
+}
+
+type MapDispatchPropsType = {
+    initialize: () => void;
+}
+
+type PropsType = MapStatePropsType & MapDispatchPropsType;
+
+class App extends Component<PropsType> {
     componentDidMount() {
         this.props.initialize();
     }
@@ -47,8 +58,8 @@ class App extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: RootState) => ({
     initialized: state.app.initialized,
 })
 
-export default connect(mapStateToProps, {initialize})(App);
+export default connect<MapStatePropsType, MapDispatchPropsType, {}, RootState>(mapStateToProps, {initialize})(App);
