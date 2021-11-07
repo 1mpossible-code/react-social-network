@@ -20,7 +20,6 @@ const authReducer = (state = initialState, action: ActionTypes): InitialStateTyp
             return {
                 ...state,
                 ...action.data,
-                isAuthorized: true,
             }
         default:
             return state;
@@ -33,6 +32,7 @@ type UserDataType = {
     userId: string | null,
     name: string | null,
     email: string | null,
+    isAuthorized: boolean,
 }
 
 type SetAuthUserActionType = {
@@ -40,14 +40,19 @@ type SetAuthUserActionType = {
     data: UserDataType,
 }
 
-export const setAuthUser = (userId: string | null, name: string | null, email: string | null): SetAuthUserActionType => ({
+export const setAuthUser = (userId: string | null, name: string | null, email: string | null, isAuthorized: boolean): SetAuthUserActionType => ({
     type: SET_AUTH_USER,
-    data: {userId, name, email},
+    data: {userId, name, email, isAuthorized},
 })
 
 export const getAuthUserThunk = (): ThunkAction<Promise<void>, RootState, unknown, ActionTypes> => async (dispatch) => {
-    const {_id, name, email}: any = await userAPI.getAuthMe();
-    dispatch(setAuthUser(_id, name, email));
+    try {
+        const {data} = await userAPI.getAuthMe();
+        const {_id, name, email}: any = data;
+        dispatch(setAuthUser(_id, name, email, true));
+    } catch (e) {
+        dispatch(setAuthUser(null, null, null, false));
+    }
 }
 
 export default authReducer;

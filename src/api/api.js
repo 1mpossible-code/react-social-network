@@ -9,7 +9,6 @@ const userAPI = {
 
     getAuthMe() {
         return axios.get('http://localhost:3001/auth/me', {withCredentials: true})
-            .then(res => res.data)
     },
 
     getUserById(userId) {
