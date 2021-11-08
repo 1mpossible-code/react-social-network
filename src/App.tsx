@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ComponentType} from "react";
 import './App.css';
 import Sidebar from "./components/Sidebar/Sidebar";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
@@ -9,7 +9,7 @@ import {connect} from "react-redux";
 import Preloader from "./components/Utils/Preloader";
 import {RootState} from "./redux/store";
 
-const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"))
+const ProfileContainer = React.lazy((): Promise<any> => import("./components/Profile/ProfileContainer"))
 const Dialogs = React.lazy(() => import("./components/Dialogs/Dialogs"))
 const UsersContainer = React.lazy(() => import("./components/Users/UsersContainer"))
 const Login = React.lazy(() => import("./components/Login/Login"))

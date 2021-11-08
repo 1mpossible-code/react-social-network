@@ -6,8 +6,21 @@ import Preloader from "../Utils/Preloader";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 import {withRouter} from "react-router-dom";
+import {UserType} from "../../types/types";
+import {RootState} from "../../redux/store";
 
-class ProfileContainer extends Component {
+type MapStatePropsType = {
+    profile: UserType;
+    match: any;
+}
+
+type MapDispatchPropsType = {
+    getUser: (userId: number) => void;
+}
+
+type PropsType = MapStatePropsType & MapDispatchPropsType;
+
+class ProfileContainer extends Component<PropsType> {
     componentDidMount() {
         const {userId} = this.props.match.params;
         this.props.getUser(userId);
@@ -23,7 +36,7 @@ class ProfileContainer extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: RootState) => ({
     profile: state.profilePage.profile,
 })
 
