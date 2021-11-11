@@ -1,14 +1,18 @@
-import React, {useState} from 'react';
+import React, {FC, useState} from 'react';
+
+type PropsType = {
+    value: string;
+}
 
 
-const ProfileCompanyCatchPhrase = (props) => {
+const ProfileCompanyCatchPhrase: FC<PropsType> = (props) => {
     const [editMode, setEditMode] = useState(false)
 
     const toggleEditMode = () => {
         setEditMode(!editMode)
     }
 
-    const handleFocus = (event) => {
+    const handleFocus = (event: any) => {
         event.target.select();
     }
 
