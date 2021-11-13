@@ -1,13 +1,26 @@
-import React from "react";
+import React, {FC} from "react";
 import Post from "./Post/Post";
+import {PostType} from "../../../types/types";
 
-const MyPosts = (props) => {
-    const onTextareaChange = (event) => {
+type StateToPropsType = {
+    posts: Array<PostType>;
+    newPostText: string;
+}
+
+type DispatchToPropsType = {
+    onTextareaChange: (text: string) => void;
+    onBtnClick: () => void;
+}
+
+type PropsType = StateToPropsType & DispatchToPropsType;
+
+const MyPosts: FC<PropsType> = (props) => {
+    const onTextareaChange = (event: any) => {
         const text = event.target.value;
         props.onTextareaChange(text);
     }
 
-    const onBtnClick = (event) => {
+    const onBtnClick = (event: any) => {
         event.preventDefault();
         props.onBtnClick();
     }

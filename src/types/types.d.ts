@@ -25,3 +25,8 @@ export type UserType = {
     website: string;
     company: CompanyType;
 }
+
+export type PostType = {
+    id: number;
+    text: string;
+}

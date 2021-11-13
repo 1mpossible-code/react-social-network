@@ -1,5 +1,5 @@
 import userAPI from "../api/api";
-import {UserType} from "../types/types";
+import {PostType, UserType} from "../types/types";
 import {ThunkAction} from "redux-thunk";
 import {RootState} from "./store";
 
@@ -12,7 +12,7 @@ const initialState = {
     posts: [
         {id: 1, text: 'text post 1'},
         {id: 2, text: 'text post 2'},
-    ],
+    ] as Array<PostType>,
     newPostText: '',
     profile: null as null | UserType,
 }
@@ -77,7 +77,7 @@ export const setProfile = (profile: UserType): SetProfileActionType => ({
     profile
 })
 
-export const getUserThunk = (userId: string): ThunkAction<Promise<void>, RootState, unknown, ActionTypes>  => async (dispatch) => {
+export const getUserThunk = (userId: string): ThunkAction<Promise<void>, RootState, unknown, ActionTypes> => async (dispatch) => {
     const profile: any = await userAPI.getUserById(userId);
     dispatch(setProfile(profile));
 };
