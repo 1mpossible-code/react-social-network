@@ -1,4 +1,4 @@
-import React, {Component, FC} from "react";
+import React, {FC} from "react";
 import Header from "./Header";
 import {connect} from "react-redux";
 import {RootState} from "../../redux/store";
@@ -7,7 +7,8 @@ type StateToProps = {
     name: string;
     isAuthorized: boolean;
 }
-type Props = StateToProps & any;
+
+type Props = StateToProps & null;
 
 const HeaderContainer: FC<Props> = (props) => {
     return (
