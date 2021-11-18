@@ -1,4 +1,4 @@
-import React, {ComponentType} from "react";
+import React from "react";
 import './App.css';
 import Sidebar from "./components/Sidebar/Sidebar";
 import {BrowserRouter, Route, Switch} from "react-router-dom";

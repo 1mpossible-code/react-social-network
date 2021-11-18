@@ -3,7 +3,7 @@ import classes from "./Header.module.css";
 import {NavLink} from "react-router-dom";
 
 type Props = {
-    name: string;
+    name: string | null;
     isAuthorized: boolean;
 }
 

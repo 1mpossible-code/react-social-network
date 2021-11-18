@@ -4,15 +4,15 @@ import {connect} from "react-redux";
 import {RootState} from "../../redux/store";
 
 type StateToProps = {
-    name: string;
+    name: string | null;
     isAuthorized: boolean;
 }
 
-type Props = StateToProps & null;
+type Props = StateToProps;
 
 const HeaderContainer: FC<Props> = (props) => {
     return (
-    <Header {...props}/>
+        <Header {...props}/>
     );
 }
 
@@ -21,4 +21,4 @@ const mapStateToProps = (state: RootState) => ({
     isAuthorized: state.auth.isAuthorized,
 })
 
-export default connect(mapStateToProps, {})(HeaderContainer);
+export default connect(mapStateToProps)(HeaderContainer);
