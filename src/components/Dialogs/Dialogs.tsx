@@ -4,7 +4,7 @@ import ChatContainer from "./Chat/ChatContainer";
 import DialogsListContainer from "./DialogsList/DialogsListContainer";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
 
-const Dialogs = (props) => {
+const Dialogs = () => {
     return (
         <div className={classes.dialogFrame}>
             <DialogsListContainer/>
