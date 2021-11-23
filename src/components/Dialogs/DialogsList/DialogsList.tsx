@@ -1,8 +1,14 @@
-import React from "react";
+import React, {FC} from "react";
 import classes from "./DialogsList.module.css"
 import DialogsItem from "./DialogsItem/DialogsItem";
+import {DialogType, UserType} from "../../../types/types";
 
-const DialogsList = (props) => {
+type Props = {
+    dialogs: Array<DialogType>
+    user: UserType;
+}
+
+const DialogsList: FC<Props> = (props) => {
     return (
         <div className={classes.dialogItems}>
             {props.dialogs.map(

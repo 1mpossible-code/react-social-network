@@ -30,3 +30,8 @@ export type PostType = {
     id: number;
     text: string;
 }
+
+export type DialogType = {
+    id: number;
+    name: string;
+}
