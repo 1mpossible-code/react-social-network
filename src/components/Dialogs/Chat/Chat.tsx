@@ -1,14 +1,27 @@
-import React from "react";
-import classes from "./Chat.css"
+import React, {FC} from "react";
+import classes from "./Chat.module.css"
 import Message from "./Message/Message";
+import {MessageType} from "../../../types/types";
 
-const Chat = (props) => {
-    const onTextareaChange = (event) => {
+type StateToProps = {
+    messages: Array<MessageType>;
+    newMessageText: string;
+}
+
+type DispatchToProps = {
+    onTextareaChange: (text: string) => void;
+    onBtnClick: () => void;
+}
+
+type Props = StateToProps & DispatchToProps;
+
+const Chat: FC<Props> = (props) => {
+    const onTextareaChange = (event: any) => {
         const text = event.target.value;
         props.onTextareaChange(text);
     }
 
-    const onBtnClick = (event) => {
+    const onBtnClick = (event: any) => {
         event.preventDefault()
         props.onBtnClick();
     }

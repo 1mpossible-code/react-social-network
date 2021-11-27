@@ -1,4 +1,4 @@
-import {DialogType} from "../types/types";
+import {DialogType, MessageType} from "../types/types";
 
 const ADD_MESSAGE = 'ADD_MESSAGE';
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT';
@@ -10,7 +10,7 @@ const initialState = {
         {id: 3, text: 'text3'},
         {id: 4, text: 'text4'},
         {id: 5, text: 'text5'},
-    ],
+    ] as Array<MessageType>,
     dialogs: [
         {id: 1, name: 'name1'},
         {id: 2, name: 'name2'},
