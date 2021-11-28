@@ -1,7 +1,11 @@
-import React from "react";
+import React, {FC} from "react";
 import classes from "./Post.module.css";
 
-const Post = (props) => {
+type Props = {
+    message: string;
+}
+
+const Post: FC<Props> = (props) => {
     return (
         <div className={classes.post}>
             <div className={classes.avatar}>Avatar</div>
