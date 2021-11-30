@@ -1,9 +1,16 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {getIsAuthorized} from "../../redux/selectors/authSelector";
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
+import {RootState} from "../../redux/store";
 
-function Login(props) {
+type StateToProps = {
+    isAuthorized: boolean;
+}
+
+type Props = StateToProps;
+
+const Login: FC<Props> = (props) => {
     if (props.isAuthorized) return <Redirect to="/profile"/>
     return (
         <div>
@@ -23,7 +30,7 @@ function Login(props) {
     );
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: RootState) => ({
     isAuthorized: getIsAuthorized(state),
 })
 
