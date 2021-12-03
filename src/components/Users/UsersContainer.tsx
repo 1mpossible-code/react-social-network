@@ -7,8 +7,21 @@ import {Component} from "react";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 import {getCurrentPage, getIsEnd, getIsLoading, getLimit, getUsers} from "../../redux/selectors/userSlectors";
+import {RootState} from "../../redux/store";
 
-class UsersContainer extends Component {
+type DispatchToProps = {
+    getUsers: (page: number, limit: number) => void;
+    incrementCurrentPage: () => void;
+}
+
+type StateToProps = {
+    currentPage: number;
+    limit: number;
+}
+
+type Props = StateToProps & DispatchToProps;
+
+class UsersContainer extends Component<Props> {
     componentDidMount() {
         this.props.getUsers(this.props.currentPage, this.props.limit);
     }
@@ -30,7 +43,7 @@ class UsersContainer extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: RootState) => ({
     users: getUsers(state),
     currentPage: getCurrentPage(state),
     limit: getLimit(state),
