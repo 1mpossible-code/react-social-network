@@ -1,9 +1,18 @@
-import React from "react";
+import React, {FC} from "react";
 import classes from './Users.module.css';
 import Preloader from "../Utils/Preloader";
 import {NavLink} from "react-router-dom";
+import {UserType} from "../../types/types";
 
-const Users = (props) => {
+type Props = {
+    users: Array<UserType>;
+    isEnd: boolean;
+    isLoading: boolean;
+    onFollowBtnClick: (userId: number) => void;
+    loadMoreUsers: () => void;
+}
+
+const Users: FC<Props> = (props) => {
     return <div>
         <h1>Users</h1>
         {
@@ -15,12 +24,12 @@ const Users = (props) => {
                             <div className={classes.userDescription}>{user.company.catchPhrase}</div>
                         </div>
                     </NavLink>
-                    <button
-                        className={classes.followBtn}
-                        onClick={() => {
-                            props.onFollowBtnClick(user.id)
-                        }}
-                    >{user.follows ? 'Unfollow' : 'Follow'}</button>
+                    {/*<button*/}
+                    {/*    className={classes.followBtn}*/}
+                    {/*    onClick={() => {*/}
+                    {/*        props.onFollowBtnClick(user.id)*/}
+                    {/*    }}*/}
+                    {/*>{user.follows ? 'Unfollow' : 'Follow'}</button>*/}
                 </div>
             ))
         }
