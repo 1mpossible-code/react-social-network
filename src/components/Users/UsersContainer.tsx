@@ -6,7 +6,7 @@ import Users from "./Users";
 import {Component} from "react";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
-import {getCurrentPage, getIsEnd, getIsLoading, getLimit, getUsers} from "../../redux/selectors/userSlectors";
+import {getCurrentPage, getIsEnd, getIsLoading, getLimit, getUsers} from "../../redux/selectors/userSelector";
 import {RootState} from "../../redux/store";
 
 type DispatchToProps = {
