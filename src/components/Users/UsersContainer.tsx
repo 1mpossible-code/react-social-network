@@ -8,15 +8,20 @@ import withAuthRedirect from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 import {getCurrentPage, getIsEnd, getIsLoading, getLimit, getUsers} from "../../redux/selectors/userSelector";
 import {RootState} from "../../redux/store";
+import {UserType} from "../../types/types";
 
 type DispatchToProps = {
     getUsers: (page: number, limit: number) => void;
     incrementCurrentPage: () => void;
+    onFollowBtnClick: () => void;
 }
 
 type StateToProps = {
     currentPage: number;
     limit: number;
+    users: Array<UserType>;
+    isEnd: boolean;
+    isLoading: boolean;
 }
 
 type Props = StateToProps & DispatchToProps;
