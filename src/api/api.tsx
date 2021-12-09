@@ -11,7 +11,7 @@ const userAPI = {
         return axios.get('http://localhost:3001/auth/me', {withCredentials: true})
     },
 
-    getUserById(userId) {
+    getUserById(userId: number) {
         return axios.get(`https://jsonplaceholder.typicode.com/users/${userId}`)
             .then(res => res.data)
     },
