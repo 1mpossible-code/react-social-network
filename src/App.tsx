@@ -11,7 +11,7 @@ import {RootState} from "./redux/store";
 
 const ProfileContainer = React.lazy((): Promise<any> => import("./components/Profile/ProfileContainer"))
 const Dialogs = React.lazy(() => import("./components/Dialogs/Dialogs"))
-const UsersContainer = React.lazy(() => import("./components/Users/UsersContainer"))
+const UsersContainer = React.lazy((): Promise<any> => import("./components/Users/UsersContainer"))
 const Login = React.lazy(() => import("./components/Login/Login"))
 
 type MapStatePropsType = {
